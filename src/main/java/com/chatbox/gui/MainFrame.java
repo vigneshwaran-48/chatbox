@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.chatbox.AppManager;
+
 public class MainFrame extends JFrame {
     
     private String appName;
@@ -21,19 +23,35 @@ public class MainFrame extends JFrame {
     private static final int HEADER_HEIGHT = 50;
     private static final int SIDEPANEL_WIDTH = 200;
 
+    private static JPanel HEADER;
+    private static JPanel BODY;
+    private static JPanel SIDE_PANEL;
+    private static JPanel LOGIN_PAGE;
+
+    private AppManager clientManager;
+
     public MainFrame(String appName) {
         this.appName = appName;
+
+        clientManager = AppManager.getInstance();
 
         setTitle(appName);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setMinimumSize(new Dimension(APP_MIN_WIDTH, APP_MIN_HEIGHT));
 
         JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.add(getHeader(), BorderLayout.PAGE_START);
-        mainPanel.add(getBody(), BorderLayout.CENTER);
-        mainPanel.add(getSidePanel(), BorderLayout.WEST);
+        
+        HEADER = getHeader();
+        BODY = getBody();
+        SIDE_PANEL = getSidePanel();
+        LOGIN_PAGE = new LoginPanel(this, clientManager);
+        
+        
+        mainPanel.add(HEADER, BorderLayout.PAGE_START);
+        mainPanel.add(LOGIN_PAGE, BorderLayout.CENTER);
 
-        add(mainPanel);
+        getContentPane().setLayout(null);
+        getContentPane().add(mainPanel);
         
         setVisible(true);
     }
