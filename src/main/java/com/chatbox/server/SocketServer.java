@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
+import com.chatbox.dto.Message;
+
 public class SocketServer {
     
     private ServerSocket serverSocket;
@@ -46,7 +48,9 @@ public class SocketServer {
                     try (Scanner scanner = new Scanner(clientSocket.getInputStream())) {
                         while(!clientSocket.isClosed()) {
                             if(scanner.hasNextLine()) {
-                                sendMessageToGroup(scanner.nextLine());
+                                String text = scanner.nextLine();
+
+                                sendMessageToGroup(Message.toMessage(text));
                             }
                         }
                     } catch (IOException e) {
@@ -60,10 +64,16 @@ public class SocketServer {
         }
     }
 
-    private void sendMessageToGroup(String message) {
+    private void sendMessageToGroup(Message message) {
         for(ClientHandler clientHandler : CLIENTS) {
-            clientHandler.getWriter().println(message);
+            clientHandler.getWriter().println(message.toString());
             clientHandler.getWriter().flush();
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+        SocketServer server = new SocketServer(3456);
+        server.startConnection();
+        
     }
 }

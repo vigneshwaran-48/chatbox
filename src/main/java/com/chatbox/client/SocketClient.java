@@ -6,10 +6,13 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import com.chatbox.dto.Message;
+
 public class SocketClient {
     
     private int port;
     private String ip;
+    private String name;
 
     private static final String DEFAULT_IP = "127.0.0.1";
 
@@ -18,18 +21,20 @@ public class SocketClient {
      * @param port
      * @param ip
      */
-    public SocketClient(int port, String ip) {
+    public SocketClient(String name, int port, String ip) {
         this.port = port;
         this.ip = ip;
+        this.name = name;
     }
 
     /**
      * Creates a instance of socket client with given port and DEFAULT_IP (127.0.0.1)
      * @param port
      */
-    public SocketClient(int port) {
+    public SocketClient(String name, int port) {
         this.port = port;
         this.ip = DEFAULT_IP;
+        this.name = name;
     }
 
     public void connect() throws UnknownHostException, IOException {
@@ -63,7 +68,11 @@ public class SocketClient {
 
                 while (!socket.isClosed()) {
                     if(scanner.hasNextLine()) {
-                        printWriter.println(scanner.nextLine());
+                        
+                        String text = scanner.nextLine();
+                        Message message = new Message(name, text);
+
+                        printWriter.println(message.toString());
                         printWriter.flush();
                     }
                 }
@@ -87,7 +96,8 @@ public class SocketClient {
             try(Scanner scanner = new Scanner(socket.getInputStream())) {
                 while(!socket.isClosed()) {
                     if(scanner.hasNextLine()) {
-                        System.out.println(scanner.nextLine());
+                        String text = scanner.nextLine();
+                        System.out.println(Message.toMessage(text).getMessage());
                     }
                 }
             }
@@ -95,5 +105,10 @@ public class SocketClient {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void main(String[] args) throws UnknownHostException, IOException {
+        SocketClient client = new SocketClient("Vicky", 3456);
+        client.connect();
     }
 }
