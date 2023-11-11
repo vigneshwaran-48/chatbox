@@ -7,6 +7,8 @@ package com.chatbox.gui;
 import com.chatbox.dao.UserService;
 import com.chatbox.dto.User;
 import com.chatbox.exception.AppException;
+import java.awt.Panel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -56,6 +58,19 @@ public class ChatAppFrame extends javax.swing.JFrame {
         welcomeUserNameLabel = new javax.swing.JLabel();
         goToJoinAGroup = new javax.swing.JButton();
         goToGroupCreation = new javax.swing.JButton();
+        joinCreateFormLayeredPane = new javax.swing.JLayeredPane();
+        createGroupForm = new javax.swing.JPanel();
+        createGroupPort = new javax.swing.JLabel();
+        createGroupPortInput = new javax.swing.JTextField();
+        createGroupName = new javax.swing.JLabel();
+        createGroupNameInput = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        joinGroupForm = new javax.swing.JPanel();
+        joinGroupHost = new javax.swing.JLabel();
+        joinGroupHostInput = new javax.swing.JTextField();
+        joinGroupPort = new javax.swing.JLabel();
+        joinGroupPortInput = new javax.swing.JTextField();
+        joinGroupButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 900, 600));
@@ -248,9 +263,133 @@ public class ChatAppFrame extends javax.swing.JFrame {
 
         goToJoinAGroup.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
         goToJoinAGroup.setText("Join a Group");
+        goToJoinAGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onJoinButtonPressed(evt);
+            }
+        });
 
         goToGroupCreation.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
         goToGroupCreation.setText("Create a Group");
+        goToGroupCreation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onCreateGroupPressed(evt);
+            }
+        });
+
+        joinCreateFormLayeredPane.setLayout(new java.awt.CardLayout());
+
+        createGroupPort.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        createGroupPort.setText("Port");
+
+        createGroupPortInput.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        createGroupPortInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createGroupPortInputActionPerformed(evt);
+            }
+        });
+
+        createGroupName.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        createGroupName.setText("Group Name");
+
+        createGroupNameInput.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+
+        jButton1.setText("Create");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onCreateGroupButtonPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout createGroupFormLayout = new javax.swing.GroupLayout(createGroupForm);
+        createGroupForm.setLayout(createGroupFormLayout);
+        createGroupFormLayout.setHorizontalGroup(
+            createGroupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createGroupFormLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(createGroupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addGroup(createGroupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(createGroupFormLayout.createSequentialGroup()
+                            .addComponent(createGroupName)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(createGroupNameInput))
+                        .addGroup(createGroupFormLayout.createSequentialGroup()
+                            .addComponent(createGroupPort, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(44, 44, 44)
+                            .addComponent(createGroupPortInput, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(314, Short.MAX_VALUE))
+        );
+        createGroupFormLayout.setVerticalGroup(
+            createGroupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createGroupFormLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(createGroupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createGroupPort)
+                    .addComponent(createGroupPortInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(createGroupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createGroupName)
+                    .addComponent(createGroupNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addComponent(jButton1)
+                .addContainerGap(98, Short.MAX_VALUE))
+        );
+
+        joinCreateFormLayeredPane.add(createGroupForm, "card3");
+
+        joinGroupHost.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        joinGroupHost.setText("Host Address");
+
+        joinGroupHostInput.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+
+        joinGroupPort.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        joinGroupPort.setText("Port");
+
+        joinGroupPortInput.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+
+        joinGroupButton.setText("Join");
+        joinGroupButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onJoinGroupPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout joinGroupFormLayout = new javax.swing.GroupLayout(joinGroupForm);
+        joinGroupForm.setLayout(joinGroupFormLayout);
+        joinGroupFormLayout.setHorizontalGroup(
+            joinGroupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(joinGroupFormLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(joinGroupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(joinGroupButton)
+                    .addGroup(joinGroupFormLayout.createSequentialGroup()
+                        .addGroup(joinGroupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(joinGroupHost)
+                            .addComponent(joinGroupPort))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(joinGroupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(joinGroupHostInput)
+                            .addComponent(joinGroupPortInput, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(259, Short.MAX_VALUE))
+        );
+        joinGroupFormLayout.setVerticalGroup(
+            joinGroupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(joinGroupFormLayout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(joinGroupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(joinGroupHost)
+                    .addComponent(joinGroupHostInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(joinGroupFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(joinGroupPort)
+                    .addComponent(joinGroupPortInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(joinGroupButton)
+                .addContainerGap(96, Short.MAX_VALUE))
+        );
+
+        joinCreateFormLayeredPane.add(joinGroupForm, "card2");
 
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
         homePanel.setLayout(homePanelLayout);
@@ -260,14 +399,18 @@ public class ChatAppFrame extends javax.swing.JFrame {
                 .addGap(334, 334, 334)
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(homePanelLayout.createSequentialGroup()
-                        .addComponent(goToJoinAGroup)
-                        .addGap(50, 50, 50)
-                        .addComponent(goToGroupCreation))
-                    .addGroup(homePanelLayout.createSequentialGroup()
                         .addComponent(hiLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(welcomeUserNameLabel)))
-                .addContainerGap(332, Short.MAX_VALUE))
+                        .addComponent(welcomeUserNameLabel))
+                    .addGroup(homePanelLayout.createSequentialGroup()
+                        .addComponent(goToJoinAGroup)
+                        .addGap(49, 49, 49)
+                        .addComponent(goToGroupCreation)))
+                .addContainerGap(333, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(joinCreateFormLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         homePanelLayout.setVerticalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,11 +419,16 @@ public class ChatAppFrame extends javax.swing.JFrame {
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hiLabel)
                     .addComponent(welcomeUserNameLabel))
-                .addGap(82, 82, 82)
-                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(goToJoinAGroup)
-                    .addComponent(goToGroupCreation))
-                .addContainerGap(478, Short.MAX_VALUE))
+                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(homePanelLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(goToGroupCreation))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(goToJoinAGroup)))
+                .addGap(18, 18, 18)
+                .addComponent(joinCreateFormLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(205, Short.MAX_VALUE))
         );
 
         bodyTabbedPanel.addTab("tab4", homePanel);
@@ -327,6 +475,31 @@ public class ChatAppFrame extends javax.swing.JFrame {
         showReigsterPanel();
     }//GEN-LAST:event_goToRegisterPanel
 
+    private void onJoinButtonPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onJoinButtonPressed
+        switchJoinCreateForm(joinGroupForm);
+    }//GEN-LAST:event_onJoinButtonPressed
+
+    private void onCreateGroupPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onCreateGroupPressed
+        switchJoinCreateForm(createGroupForm);
+    }//GEN-LAST:event_onCreateGroupPressed
+
+    private void createGroupPortInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createGroupPortInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createGroupPortInputActionPerformed
+
+    private void onJoinGroupPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onJoinGroupPressed
+        String host = joinGroupHost.getText();
+        int port = Integer.parseInt(joinGroupPort.getText());
+        
+    }//GEN-LAST:event_onJoinGroupPressed
+
+    private void onCreateGroupButtonPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onCreateGroupButtonPressed
+        int port = Integer.parseInt(createGroupPort.getText());
+        String groupName = createGroupName.getText();
+        
+        
+    }//GEN-LAST:event_onCreateGroupButtonPressed
+
     /**
      * @param args the command line arguments
      */
@@ -362,6 +535,13 @@ public class ChatAppFrame extends javax.swing.JFrame {
         });
     }
     
+    private void switchJoinCreateForm(JPanel panel) {
+        joinCreateFormLayeredPane.removeAll();
+        joinCreateFormLayeredPane.add(panel);
+        joinCreateFormLayeredPane.repaint();
+        joinCreateFormLayeredPane.revalidate();
+    }
+    
     public void showLoginPage() {
         bodyTabbedPanel.setSelectedIndex(2);
     }
@@ -379,12 +559,25 @@ public class ChatAppFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane bodyTabbedPanel;
     private javax.swing.JPanel chatPanel;
+    private javax.swing.JPanel createGroupForm;
+    private javax.swing.JLabel createGroupName;
+    private javax.swing.JTextField createGroupNameInput;
+    private javax.swing.JLabel createGroupPort;
+    private javax.swing.JTextField createGroupPortInput;
     private javax.swing.JButton goToGroupCreation;
     private javax.swing.JButton goToJoinAGroup;
     private javax.swing.JButton goToRegisterButton;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JLabel hiLabel;
     private javax.swing.JPanel homePanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLayeredPane joinCreateFormLayeredPane;
+    private javax.swing.JButton joinGroupButton;
+    private javax.swing.JPanel joinGroupForm;
+    private javax.swing.JLabel joinGroupHost;
+    private javax.swing.JTextField joinGroupHostInput;
+    private javax.swing.JLabel joinGroupPort;
+    private javax.swing.JTextField joinGroupPortInput;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginMessage;
     private javax.swing.JPanel loginMessagePanel;
